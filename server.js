@@ -36,8 +36,8 @@ app.use((err, req, res, next) => {
 const startServer = async () => {
     try {
         await testConnection();
-        await sequelize.sync({ alter : true /*, force : true*/ });
-//        await sequelize.sync({ alter : true /*, force : true*/ }); // Sincroniza todos los modelos
+        await sequelize.sync({ alter : true , force : true });
+        await sequelize.sync({ alter : true /*, force : true*/ }); // Sincroniza todos los modelos
         console.log('Modelos sincronizados con la base de datos.');
         
         app.listen(PORT, () => {

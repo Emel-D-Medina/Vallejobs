@@ -5,13 +5,17 @@ import axios from 'axios';
 
 const JobModal = ({ job, onClose }) => {
   if (!job) return null;
+
+  // ID temporal del postulante (debería venir del usuario logueado)
+  const postulanteId = 1;
+
   const aplicar = async () => {
     try {
-
-      const response = await axios.post('/http://localhost:5000/Trabajos/agpostulante', {
-        trabajoId: job.id,  
-        postulanteId: postulanteId,  
+      const response = await axios.post('http://localhost:5000/Trabajos/agpostulante', {
+        trabajoId: job.id,
+        postulanteId: postulanteId,
       });
+
       alert(response.data.message);
     } catch (error) {
       console.error('Error al postularse:', error);
@@ -25,7 +29,7 @@ const JobModal = ({ job, onClose }) => {
         <button className="close-button" onClick={onClose}>
           <FaTimes />
         </button>
-        
+
         <div className="modal-header">
           <FaBriefcase className="modal-icon" />
           <h2>{job.titulo}</h2>
@@ -55,17 +59,19 @@ const JobModal = ({ job, onClose }) => {
           <div className="job-requirements">
             <h3>Requisitos</h3>
             <ul>
-              {job.requerimientos }
+              {job.requerimientos}
             </ul>
           </div>
         </div>
 
         <div className="modal-footer">
-          <button className="apply-button" onClick={aplicar}>Aplicar ahora</button>
+          <button className="apply-button" onClick={aplicar}>
+            Aplicar ahora
+          </button>
         </div>
       </div>
     </div>
   );
 };
 
-export default JobModal; 
+export default JobModal;

@@ -1,12 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
+import Navbar from "../components/Navbar";
 
-const Dashboard = () => {
-  return (
-    <div>
-      <h1>Welcome to the Dashboard</h1>
-      <p>This is a protected route, only accessible after login.</p>
-    </div>
-  );
+// Estilos básicos simulados (puedes mover esto a un CSS file)
+const styles = {
+  container: { display: "flex", height: "100vh", fontFamily: "Arial" },
+  main: { flex: 1, padding: "20px" },
 };
 
-export default Dashboard;
+export default function Dashboard() {
+  return (
+    <>
+      <Navbar />
+      <div style={styles.container}>
+        <main style={styles.main}>
+          <h1>Bienvenido al Dashboard</h1>
+        </main>
+      </div>
+    </>
+  );
+}

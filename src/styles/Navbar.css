@@ -53,7 +53,7 @@
 
   border-color: #4a3f8c;
   box-shadow: 0 0 5px rgba(74, 63, 140, 0.2);
-  padding: 10px 30px; 
+  padding: 10px 30px;
   border-radius: 0 8px 8px 0;
   border: none;
 }
@@ -78,7 +78,8 @@
   background-color: #3d3575;
 }
 
-.register-btn, .login-btn {
+.register-btn,
+.login-btn {
   background-color: #4a3f8c;
   color: white;
   border: 1px solid #4a3f8c;
@@ -99,7 +100,9 @@
   margin-top: 5px;
 }
 
-.register-btn:hover, .login-btn:hover, menu-btn:hover {
+.register-btn:hover,
+.login-btn:hover,
+menu-btn:hover {
   background-color: #3d3575;
   color: white;
 }
@@ -113,30 +116,52 @@
 }
 
 /* Asegurando que todos los botones tengan el mismo tamaño y estilo */
-.menu-btn, .search-btn, .register-btn, .login-btn {
-  min-width: 100px; /* Asegura que todos los botones tengan un ancho mínimo igual */
-  height: 40px; /* Establece una altura uniforme para todos los botones */
-  display: flex; /* Asegura que el contenido del botón esté centrado */
-  align-items: center; /* Centra verticalmente el contenido */
-  justify-content: center; /* Centra horizontalmente el contenido */
-  padding: 0; /* Asegura que no haya padding adicional */
-  border: 1px solid #4a3f8c; /* Asegura que todos los botones tengan un borde consistente */
-  border-radius: 4px; /* Bordes redondeados */
-  background-color: #4a3f8c; /* Color de fondo para todos los botones */
-  color: white; /* Color del texto */
-  cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
-  transition: background-color 0.3s ease; /* Transición suave para el color de fondo */
-  margin-top: -10px; /* Ajusta la posición vertical */
+.menu-btn,
+.search-btn,
+.register-btn,
+.login-btn {
+  min-width: 100px;
+  /* Asegura que todos los botones tengan un ancho mínimo igual */
+  height: 40px;
+  /* Establece una altura uniforme para todos los botones */
+  display: flex;
+  /* Asegura que el contenido del botón esté centrado */
+  align-items: center;
+  /* Centra verticalmente el contenido */
+  justify-content: center;
+  /* Centra horizontalmente el contenido */
+  padding: 0;
+  /* Asegura que no haya padding adicional */
+  border: 1px solid #4a3f8c;
+  /* Asegura que todos los botones tengan un borde consistente */
+  border-radius: 4px;
+  /* Bordes redondeados */
+  background-color: #4a3f8c;
+  /* Color de fondo para todos los botones */
+  color: white;
+  /* Color del texto */
+  cursor: pointer;
+  /* Cambia el cursor al pasar sobre el botón */
+  transition: background-color 0.3s ease;
+  /* Transición suave para el color de fondo */
+  margin-top: -10px;
+  /* Ajusta la posición vertical */
 }
 
 .login-btn {
-  background-color: transparent; /* Fondo transparente para el botón de iniciar sesión */
-  color: #402ea7; /* Color del texto para el botón de iniciar sesión */
-  border: px solid #402ea7; /* Borde para el botón de iniciar sesión */
+  background-color: transparent;
+  /* Fondo transparente para el botón de iniciar sesión */
+  color: #402ea7;
+  /* Color del texto para el botón de iniciar sesión */
+  border: px solid #402ea7;
+  /* Borde para el botón de iniciar sesión */
 }
 
-.register-btn:hover, .login-btn:hover, .menu-btn:hover {
-  background-color: #3d3575; /* Color de fondo al pasar el mouse */
-  color: white; /* Color del texto al pasar el mouse */
+.register-btn:hover,
+.login-btn:hover,
+.menu-btn:hover {
+  background-color: #3d3575;
+  /* Color de fondo al pasar el mouse */
+  color: white;
+  /* Color del texto al pasar el mouse */
 }
-

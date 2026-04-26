@@ -49,7 +49,7 @@
   background-color: white;
   padding: 20px;
   border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .resume-preview {
@@ -65,7 +65,8 @@
   margin-top: 10px;
 }
 
-.view-btn, .update-btn {
+.view-btn,
+.update-btn {
   padding: 6px 12px;
   border-radius: 4px;
   cursor: pointer;
@@ -96,7 +97,7 @@
   background-color: white;
   padding: 20px;
   border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .info-item {
@@ -116,7 +117,7 @@
   background-color: white;
   padding: 20px;
   border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   text-align: center;
 }
 
@@ -139,7 +140,7 @@
   background-color: white;
   padding: 20px;
   border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .history-item {
@@ -211,8 +212,8 @@
   .profile-container {
     grid-template-columns: 1fr;
   }
-  
+
   .ratings-section {
     flex-direction: column;
   }
-} 
+}

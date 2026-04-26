@@ -1,10 +1,8 @@
 // src/components/Sidebar.js
-import React from 'react';
-import '../styles/Sidebar.css';
-import { useEffect, useState } from 'react';
-import axios from 'axios';
-
-
+import React from "react";
+import "../styles/Sidebar.css";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 const Sidebar = () => {
   const [jobCategory, setJobCategory] = useState([]);
@@ -15,24 +13,26 @@ const Sidebar = () => {
   useEffect(() => {
     const fetchCategory = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/Categoria/Obtener');
+        const response = await axios.get(
+          "http://localhost:5000/Categoria/Obtener",
+        );
         setJobCategory(response.data);
       } catch (error) {
-        console.error('Error al obtener los trabajos:', error);
+        console.error("Error al obtener los trabajos:", error);
       }
     };
-  
+
     fetchCategory();
   }, []);
-
 
   return (
     <div className="sidebar">
       {jobCategory.map((category) => (
-        <button 
-          key={category.id} 
-          className="sidebar-btn" 
-          onClick={() => handleCategoryClick(category)}>
+        <button
+          key={category.id}
+          className="sidebar-btn"
+          onClick={() => handleCategoryClick(category)}
+        >
           {category.nombre}
         </button>
       ))}

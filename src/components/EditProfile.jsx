@@ -1,36 +1,42 @@
-import React, { useState } from 'react';
-import { FaUser, FaEnvelope, FaPhone, FaMapMarkerAlt, FaFileUpload } from 'react-icons/fa';
-import '../styles/EditProfile.css';
+import React, { useState } from "react";
+import {
+  FaUser,
+  FaEnvelope,
+  FaPhone,
+  FaMapMarkerAlt,
+  FaFileUpload,
+} from "react-icons/fa";
+import "../styles/EditProfile.css";
 
 const EditProfile = () => {
   const [formData, setFormData] = useState({
-    nombre: '',
-    email: '',
-    telefono: '',
-    ubicacion: '',
-    descripcion: '',
+    nombre: "",
+    email: "",
+    telefono: "",
+    ubicacion: "",
+    descripcion: "",
     cv: null,
-    foto: null
+    foto: null,
   });
 
   const [previewImage, setPreviewImage] = useState(null);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData(prevState => ({
+    setFormData((prevState) => ({
       ...prevState,
-      [name]: value
+      [name]: value,
     }));
   };
 
   const handleFileChange = (e) => {
     const file = e.target.files[0];
-    if (file && e.target.name === 'foto') {
+    if (file && e.target.name === "foto") {
       setPreviewImage(URL.createObjectURL(file));
     }
-    setFormData(prevState => ({
+    setFormData((prevState) => ({
       ...prevState,
-      [e.target.name]: file
+      [e.target.name]: file,
     }));
   };
 
@@ -139,33 +145,36 @@ const EditProfile = () => {
               />
             </div>
 
-            
             <div className="cv-upload-section">
-          <div className="upload-btn-wrapper">
-        <button
-          type="button"
-          className="upload-btn"
-          onClick={() => document.getElementById('cv-input').click()}
-        >
-          <FaFileUpload /> Subir CV
-        </button>
-        <input
-          type="file"
-          id="cv-input"
-          name="cv"
-          onChange={handleFileChange}
-          accept=".pdf,.doc,.docx"
-          style={{ display: 'none' }} // Ocultamos el input
-        />
-      </div>
-      {formData.cv && <span className="file-name">{formData.cv.name}</span>}
-    </div>
-
-
+              <div className="upload-btn-wrapper">
+                <button
+                  type="button"
+                  className="upload-btn"
+                  onClick={() => document.getElementById("cv-input").click()}
+                >
+                  <FaFileUpload /> Subir CV
+                </button>
+                <input
+                  type="file"
+                  id="cv-input"
+                  name="cv"
+                  onChange={handleFileChange}
+                  accept=".pdf,.doc,.docx"
+                  style={{ display: "none" }} // Ocultamos el input
+                />
+              </div>
+              {formData.cv && (
+                <span className="file-name">{formData.cv.name}</span>
+              )}
+            </div>
 
             <div className="form-actions">
-              <button type="button" className="cancel-btn">Cancelar</button>
-              <button type="submit" className="save-btn">Guardar cambios</button>
+              <button type="button" className="cancel-btn">
+                Cancelar
+              </button>
+              <button type="submit" className="save-btn">
+                Guardar cambios
+              </button>
             </div>
           </form>
         </div>
@@ -174,4 +183,4 @@ const EditProfile = () => {
   );
 };
 
-export default EditProfile; 
+export default EditProfile;

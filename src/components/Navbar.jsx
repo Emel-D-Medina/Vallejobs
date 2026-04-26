@@ -1,7 +1,7 @@
-import React from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSearch } from '@fortawesome/free-solid-svg-icons';
-import '../styles/Navbar.css';
+import React from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSearch } from "@fortawesome/free-solid-svg-icons";
+import "../styles/Navbar.css";
 
 const Navbar = () => {
   return (
@@ -14,12 +14,21 @@ const Navbar = () => {
         </button>
       </div>
       <div className="nav-buttons">
-        <button className="register-btn" onClick={() => window.location.href = '/registro'}>REGISTRAR</button>
-        <button className="login-btn" onClick={() => window.location.href = '/login'}>Login</button>
+        <button
+          className="register-btn"
+          onClick={() => (window.location.href = "/registro")}
+        >
+          REGISTRAR
+        </button>
+        <button
+          className="login-btn"
+          onClick={() => (window.location.href = "/login")}
+        >
+          Login
+        </button>
       </div>
     </div>
   );
 };
 
 export default Navbar;
-

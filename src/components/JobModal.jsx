@@ -1,7 +1,13 @@
-import React from 'react';
-import '../styles/JobModal.css';
-import { FaTimes, FaBriefcase, FaMapMarkerAlt, FaMoneyBillWave, FaClock } from 'react-icons/fa';
-import axios from 'axios';
+import React from "react";
+import "../styles/JobModal.css";
+import {
+  FaTimes,
+  FaBriefcase,
+  FaMapMarkerAlt,
+  FaMoneyBillWave,
+  FaClock,
+} from "react-icons/fa";
+import axios from "axios";
 
 const JobModal = ({ job, onClose }) => {
   if (!job) return null;
@@ -11,15 +17,18 @@ const JobModal = ({ job, onClose }) => {
 
   const aplicar = async () => {
     try {
-      const response = await axios.post('http://localhost:5000/Trabajos/agpostulante', {
-        trabajoId: job.id,
-        postulanteId: postulanteId,
-      });
+      const response = await axios.post(
+        "http://localhost:5000/Trabajos/agpostulante",
+        {
+          trabajoId: job.id,
+          postulanteId: postulanteId,
+        },
+      );
 
       alert(response.data.message);
     } catch (error) {
-      console.error('Error al postularse:', error);
-      alert('Ocurrió un error al intentar postularse.');
+      console.error("Error al postularse:", error);
+      alert("Ocurrió un error al intentar postularse.");
     }
   };
 
@@ -38,29 +47,27 @@ const JobModal = ({ job, onClose }) => {
         <div className="modal-body">
           <div className="job-detail">
             <FaMapMarkerAlt className="detail-icon" />
-            <span>{job.localizacion || 'Ubicación no especificada'}</span>
+            <span>{job.localizacion || "Ubicación no especificada"}</span>
           </div>
 
           <div className="job-detail">
             <FaMoneyBillWave className="detail-icon" />
-            <span>{job.salario || 'Salario no especificado'}</span>
+            <span>{job.salario || "Salario no especificado"}</span>
           </div>
 
           <div className="job-detail">
             <FaClock className="detail-icon" />
-            <span>{job.horario || 'Tiempo completo'}</span>
+            <span>{job.horario || "Tiempo completo"}</span>
           </div>
 
           <div className="job-description">
             <h3>Descripción del puesto</h3>
-            <p>{job.descripcion || 'No hay descripción disponible'}</p>
+            <p>{job.descripcion || "No hay descripción disponible"}</p>
           </div>
 
           <div className="job-requirements">
             <h3>Requisitos</h3>
-            <ul>
-              {job.requerimientos}
-            </ul>
+            <ul>{job.requerimientos}</ul>
           </div>
         </div>
 

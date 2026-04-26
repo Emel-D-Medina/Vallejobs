@@ -1,7 +1,16 @@
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
-import '../styles/UserProfile.css';
-import { FaEnvelope, FaPhone, FaStar, FaBriefcase, FaFileAlt, FaUser, FaBuilding, FaEdit } from 'react-icons/fa';
+import React from "react";
+import { useNavigate } from "react-router-dom";
+import "../styles/UserProfile.css";
+import {
+  FaEnvelope,
+  FaPhone,
+  FaStar,
+  FaBriefcase,
+  FaFileAlt,
+  FaUser,
+  FaBuilding,
+  FaEdit,
+} from "react-icons/fa";
 
 const UserProfile = () => {
   const navigate = useNavigate();
@@ -19,7 +28,7 @@ const UserProfile = () => {
       {
         company: "Tech Corp",
         position: "Senior Developer",
-        period: "2021 - Presente"
+        period: "2021 - Presente",
       },
       // ... más trabajos
     ],
@@ -27,10 +36,10 @@ const UserProfile = () => {
       {
         title: "Se busca desarrollador Frontend",
         status: "Activo",
-        applicants: 12
+        applicants: 12,
       },
       // ... más ofertas
-    ]
+    ],
   };
 
   return (
@@ -41,16 +50,18 @@ const UserProfile = () => {
             <img src={userProfile.photo} alt={userProfile.name} />
           </div>
           <h2>{userProfile.name}</h2>
-          <button 
+          <button
             className="edit-profile-btn"
-            onClick={() => navigate('/editprofile')}
+            onClick={() => navigate("/editprofile")}
           >
             <FaEdit /> Editar Perfil
           </button>
         </div>
 
         <div className="resume-section">
-          <h3><FaFileAlt /> Hoja de Vida</h3>
+          <h3>
+            <FaFileAlt /> Hoja de Vida
+          </h3>
           <div className="resume-preview">
             <p>CV_JuanPerez.pdf</p>
             <div className="resume-actions">
@@ -80,7 +91,11 @@ const UserProfile = () => {
               {[...Array(5)].map((_, index) => (
                 <FaStar
                   key={index}
-                  className={index < Math.floor(userProfile.employerRating) ? 'star-filled' : 'star-empty'}
+                  className={
+                    index < Math.floor(userProfile.employerRating)
+                      ? "star-filled"
+                      : "star-empty"
+                  }
                 />
               ))}
             </div>
@@ -93,7 +108,11 @@ const UserProfile = () => {
               {[...Array(5)].map((_, index) => (
                 <FaStar
                   key={index}
-                  className={index < Math.floor(userProfile.employeeRating) ? 'star-filled' : 'star-empty'}
+                  className={
+                    index < Math.floor(userProfile.employeeRating)
+                      ? "star-filled"
+                      : "star-empty"
+                  }
                 />
               ))}
             </div>
@@ -107,7 +126,9 @@ const UserProfile = () => {
         </div>
 
         <div className="history-section">
-          <h3><FaBriefcase /> Historial Laboral</h3>
+          <h3>
+            <FaBriefcase /> Historial Laboral
+          </h3>
           {userProfile.jobHistory.map((job, index) => (
             <div key={index} className="history-item">
               <FaBuilding className="company-icon" />
@@ -139,4 +160,4 @@ const UserProfile = () => {
   );
 };
 
-export default UserProfile; 
+export default UserProfile;

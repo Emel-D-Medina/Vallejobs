@@ -2,12 +2,12 @@
 
 .sidebar {
   width: 200px;
-  background-color: #4a3f8c; 
+  background-color: #4a3f8c;
   padding: 15px;
   display: flex;
   flex-direction: column;
   gap: 10px;
-  height: 100vh; 
+  height: 100vh;
 }
 
 .sidebar-btn {
@@ -18,10 +18,10 @@
   color: white;
   cursor: pointer;
   text-align: left;
-  transition: background-color 0.3s, transform 0.2s; 
+  transition: background-color 0.3s, transform 0.2s;
 }
 
 .sidebar-btn:hover {
   background-color: #6a5acd;
-  transform: scale(1.05); 
+  transform: scale(1.05);
 }

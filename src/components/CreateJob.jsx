@@ -1,26 +1,33 @@
-import React, { useState } from 'react';
-import '../styles/CreateJob.css';
-import { FaBriefcase, FaMapMarkerAlt, FaMoneyBillWave, FaClock, FaTag, FaUsers } from 'react-icons/fa';
+import React, { useState } from "react";
+import "../styles/CreateJob.css";
+import {
+  FaBriefcase,
+  FaMapMarkerAlt,
+  FaMoneyBillWave,
+  FaClock,
+  FaTag,
+  FaUsers,
+} from "react-icons/fa";
 
 const CreateJob = () => {
   const [jobData, setJobData] = useState({
-    title: '',
-    company: '',
-    location: '',
-    salary: '',
-    type: 'Tiempo completo',
-    category: '',
-    description: '',
-    requirements: '',
-    benefits: '',
+    title: "",
+    company: "",
+    location: "",
+    salary: "",
+    type: "Tiempo completo",
+    category: "",
+    description: "",
+    requirements: "",
+    benefits: "",
     vacancies: 1,
   });
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setJobData(prevState => ({
+    setJobData((prevState) => ({
       ...prevState,
-      [name]: value
+      [name]: value,
     }));
   };
 
@@ -31,28 +38,29 @@ const CreateJob = () => {
   };
 
   const handleVacanciesChange = (operation) => {
-    setJobData(prevState => ({
+    setJobData((prevState) => ({
       ...prevState,
-      vacancies: operation === 'increment' 
-        ? Math.min(prevState.vacancies + 1, 99) // Máximo 99 vacantes
-        : Math.max(prevState.vacancies - 1, 1)  // Mínimo 1 vacante
+      vacancies:
+        operation === "increment"
+          ? Math.min(prevState.vacancies + 1, 99) // Máximo 99 vacantes
+          : Math.max(prevState.vacancies - 1, 1), // Mínimo 1 vacante
     }));
   };
 
   // Lista de categorías disponibles
   const jobCategories = [
-    'Tecnología',
-    'Marketing',
-    'Diseño',
-    'Ventas',
-    'Administración',
-    'Recursos Humanos',
-    'Finanzas',
-    'Educación',
-    'Salud',
-    'Ingeniería',
-    'Servicio al Cliente',
-    'Otros'
+    "Tecnología",
+    "Marketing",
+    "Diseño",
+    "Ventas",
+    "Administración",
+    "Recursos Humanos",
+    "Finanzas",
+    "Educación",
+    "Salud",
+    "Ingeniería",
+    "Servicio al Cliente",
+    "Otros",
   ];
 
   return (
@@ -152,11 +160,7 @@ const CreateJob = () => {
                 <FaClock className="input-icon" />
                 Tipo de empleo
               </label>
-              <select
-                name="type"
-                value={jobData.type}
-                onChange={handleChange}
-              >
+              <select name="type" value={jobData.type} onChange={handleChange}>
                 <option value="Tiempo completo">Tiempo completo</option>
                 <option value="Medio tiempo">Medio tiempo</option>
                 <option value="Remoto">Remoto</option>
@@ -172,10 +176,10 @@ const CreateJob = () => {
                 Número de Vacantes
               </label>
               <div className="vacancies-input">
-                <button 
-                  type="button" 
+                <button
+                  type="button"
                   className="vacancy-btn"
-                  onClick={() => handleVacanciesChange('decrement')}
+                  onClick={() => handleVacanciesChange("decrement")}
                   disabled={jobData.vacancies <= 1}
                 >
                   -
@@ -185,17 +189,20 @@ const CreateJob = () => {
                   name="vacancies"
                   value={jobData.vacancies}
                   onChange={(e) => {
-                    const value = Math.max(1, Math.min(99, parseInt(e.target.value) || 1));
-                    setJobData(prev => ({ ...prev, vacancies: value }));
+                    const value = Math.max(
+                      1,
+                      Math.min(99, parseInt(e.target.value) || 1),
+                    );
+                    setJobData((prev) => ({ ...prev, vacancies: value }));
                   }}
                   min="1"
                   max="99"
                   className="vacancy-number"
                 />
-                <button 
-                  type="button" 
+                <button
+                  type="button"
                   className="vacancy-btn"
-                  onClick={() => handleVacanciesChange('increment')}
+                  onClick={() => handleVacanciesChange("increment")}
                   disabled={jobData.vacancies >= 99}
                 >
                   +
@@ -240,8 +247,12 @@ const CreateJob = () => {
           </div>
 
           <div className="form-actions">
-            <button type="button" className="cancel-btn">Cancelar</button>
-            <button type="submit" className="submit-btn">Publicar empleo</button>
+            <button type="button" className="cancel-btn">
+              Cancelar
+            </button>
+            <button type="submit" className="submit-btn">
+              Publicar empleo
+            </button>
           </div>
         </form>
       </div>
@@ -249,4 +260,4 @@ const CreateJob = () => {
   );
 };
 
-export default CreateJob; 
+export default CreateJob;

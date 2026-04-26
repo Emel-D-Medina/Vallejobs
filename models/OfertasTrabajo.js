@@ -1,7 +1,6 @@
-// models/JobOffer.js
-
-const { DataTypes } = require("sequelize");
-const { sequelize } = require("../database");
+// models/OfertasTrabajo.js
+import { DataTypes } from "sequelize";
+import { sequelize } from "../database.js"; // Asegúrate de incluir .js
 
 const OfertasTrabajo = sequelize.define(
   "OfertasTrabajo",
@@ -81,4 +80,4 @@ const OfertasTrabajo = sequelize.define(
   },
 );
 
-module.exports = OfertasTrabajo;
+export default OfertasTrabajo;

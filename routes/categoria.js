@@ -1,26 +1,21 @@
 // routes/categoria.js
-
-const express = require("express");
+import express from "express";
 const router = express.Router();
-const categoriaController = require("../controllers/categoriaController");
-const authMiddleware = require("../middlewares/authMiddleware");
+import categoriaController from "../controllers/categoriaController.js";
+import authMiddleware from "../middlewares/authMiddleware.js";
 
 router.post("/registrar", categoriaController.createCategory);
-
 router.get("/obtener", categoriaController.getAllCategorys);
-
 router.get("/obtener/:id", authMiddleware, categoriaController.getCategoryById);
-
 router.put(
   "/actualizar/:id",
   authMiddleware,
   categoriaController.updateCategory,
 );
-
 router.delete(
   "/eliminar/:id",
   authMiddleware,
   categoriaController.deleteCategory,
 );
 
-module.exports = router;
+export default router;

@@ -1,8 +1,7 @@
 // controllers/OfertasController.js
+import OfertaTrabajo from "../models/OfertasTrabajo.js";
 
-const OfertaTrabajo = require("../models/OfertasTrabajo");
-
-const createWork = async (req, res) => {
+export const createWork = async (req, res) => {
   try {
     const {
       titulo,
@@ -31,26 +30,22 @@ const createWork = async (req, res) => {
   }
 };
 
-const addPostulante = async (req, res) => {
+export const addPostulante = async (req, res) => {
   try {
     const { trabajoId, postulanteId } = req.body;
-
     const trabajo = await OfertaTrabajo.findByPk(trabajoId);
-    if (!trabajo) {
+    if (!trabajo)
       return res.status(404).json({ error: "Trabajo no encontrado" });
-    }
 
     const postulantes = trabajo.postulantes || [];
-
     if (postulantes.includes(postulanteId)) {
       return res
         .status(400)
-        .json({ error: "El postulante ya está registrado en este trabajo" });
+        .json({ error: "El postulante ya está registrado" });
     }
 
     postulantes.push(postulanteId);
     trabajo.postulantes = postulantes;
-
     await trabajo.save();
 
     res.json({ message: "Postulante agregado correctamente", trabajo });
@@ -60,7 +55,7 @@ const addPostulante = async (req, res) => {
   }
 };
 
-const getAllWorks = async (req, res) => {
+export const getAllWorks = async (req, res) => {
   try {
     const Jobs = await OfertaTrabajo.findAll();
     res.json(Jobs);
@@ -70,10 +65,10 @@ const getAllWorks = async (req, res) => {
   }
 };
 
-const getWorkById = async (req, res) => {
+export const getWorkById = async (req, res) => {
   try {
     const { id } = req.params;
-    const Job = await User.findByPk(id);
+    const Job = await OfertaTrabajo.findByPk(id); // Corregido: antes decía User
     if (Job) {
       res.json(Job);
     } else {
@@ -85,12 +80,10 @@ const getWorkById = async (req, res) => {
   }
 };
 
-const updateWork = async (req, res) => {
+export const updateWork = async (req, res) => {
   try {
     const { id } = req.params;
-    const [updated] = await OfertaTrabajo.update(req.body, {
-      where: { id },
-    });
+    const [updated] = await OfertaTrabajo.update(req.body, { where: { id } });
     if (updated) {
       const updatedWork = await OfertaTrabajo.findByPk(id);
       res.json(updatedWork);
@@ -98,39 +91,36 @@ const updateWork = async (req, res) => {
       res.status(404).json({ error: "Oferta no encontrada" });
     }
   } catch (error) {
-    console.error("Error al obtener oferta:", error);
     res.status(500).json({ error: "Error al actualizar la oferta" });
   }
 };
 
-const deleteWork = async (req, res) => {
+export const deleteWork = async (req, res) => {
   try {
     const { id } = req.params;
-    const deleted = await OfertaTrabajo.destroy({
-      where: { id },
-    });
+    const deleted = await OfertaTrabajo.destroy({ where: { id } });
     if (deleted) {
       res.json({ message: "Oferta eliminada correctamente" });
     } else {
       res.status(404).json({ error: "Oferta no encontrada" });
     }
   } catch (error) {
-    console.error("Error al eliminar oferta:", error);
     res.status(500).json({ error: "Error al eliminar oferta" });
   }
 };
 
-const findWorkByCategory = async (categoria) => {
+export const findWorkByCategory = async (req, res) => {
   try {
+    const { categoria } = req.params;
     const Oferta = await OfertaTrabajo.findOne({ where: { categoria } });
-    return Oferta;
+    if (Oferta) return res.json(Oferta);
+    res.status(404).json({ error: "No hay ofertas en esta categoría" });
   } catch (error) {
-    console.error("Error al buscar el oferta por categoría:", error);
-    throw error;
+    res.status(500).json({ error: "Error al buscar por categoría" });
   }
 };
 
-module.exports = {
+export default {
   createWork,
   getAllWorks,
   getWorkById,

@@ -1,8 +1,7 @@
 // controllers/categoriaController.js
+import Categoria from "../models/Categoria.js";
 
-const Categoria = require("../models/Categoria");
-
-const createCategory = async (req, res) => {
+export const createCategory = async (req, res) => {
   try {
     const { nombre, descripcion } = req.body;
     const newCategory = await Categoria.create({ nombre, descripcion });
@@ -13,7 +12,7 @@ const createCategory = async (req, res) => {
   }
 };
 
-const getAllCategorys = async (req, res) => {
+export const getAllCategorys = async (req, res) => {
   try {
     const Categorys = await Categoria.findAll();
     res.json(Categorys);
@@ -23,10 +22,10 @@ const getAllCategorys = async (req, res) => {
   }
 };
 
-const getCategoryById = async (req, res) => {
+export const getCategoryById = async (req, res) => {
   try {
     const { id } = req.params;
-    const Category = await User.findByPk(id);
+    const Category = await Categoria.findByPk(id); // Corregido: antes decía User
     if (Category) {
       res.json(Category);
     } else {
@@ -38,7 +37,7 @@ const getCategoryById = async (req, res) => {
   }
 };
 
-const updateCategory = async (req, res) => {
+export const updateCategory = async (req, res) => {
   try {
     const { id } = req.params;
     const [updated] = await Categoria.update(req.body, {
@@ -56,7 +55,7 @@ const updateCategory = async (req, res) => {
   }
 };
 
-const deleteCategory = async (req, res) => {
+export const deleteCategory = async (req, res) => {
   try {
     const { id } = req.params;
     const deleted = await Categoria.destroy({
@@ -73,7 +72,7 @@ const deleteCategory = async (req, res) => {
   }
 };
 
-module.exports = {
+export default {
   createCategory,
   getAllCategorys,
   getCategoryById,

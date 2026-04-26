@@ -1,8 +1,8 @@
 // middlewares/authMiddleware.js
-
-const jwt = require("jsonwebtoken");
+import jwt from "jsonwebtoken";
 
 const authMiddleware = (req, res, next) => {
+  // Obtenemos el token del header Authorization (formato: Bearer <token>)
   const token = req.headers["authorization"]?.split(" ")[1];
 
   if (!token) {
@@ -12,12 +12,13 @@ const authMiddleware = (req, res, next) => {
   }
 
   try {
+    // Verificamos el token usando la clave secreta
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
-    req.user = decoded;
+    req.user = decoded; // Guardamos la info del usuario en el request
     next();
   } catch (error) {
-    res.status(401).json({ message: "Token no válido" });
+    return res.status(401).json({ message: "Token no válido" });
   }
 };
 
-module.exports = authMiddleware;
+export default authMiddleware;

@@ -1,8 +1,6 @@
-// models/User.js
-
-const { DataTypes } = require("sequelize");
-const { sequelize } = require("../database");
-const bcrypt = require("bcryptjs");
+import { DataTypes } from "sequelize";
+import { sequelize } from "../database.js";
+import bcrypt from "bcryptjs";
 
 const User = sequelize.define(
   "User",
@@ -12,30 +10,14 @@ const User = sequelize.define(
       autoIncrement: true,
       primaryKey: true,
     },
-    apellido: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    documento: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      //unique: true,
-    },
-    telefono: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    name: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
+    apellido: { type: DataTypes.STRING, allowNull: false },
+    documento: { type: DataTypes.STRING, allowNull: false },
+    telefono: { type: DataTypes.STRING, allowNull: false },
+    name: { type: DataTypes.STRING, allowNull: false },
     email: {
       type: DataTypes.STRING,
       allowNull: false,
-      unique: false,
-      validate: {
-        isEmail: true,
-      },
+      validate: { isEmail: true },
     },
     password: {
       type: DataTypes.STRING,
@@ -46,18 +28,10 @@ const User = sequelize.define(
         this.setDataValue("password", hash);
       },
     },
-    createdAt: {
-      type: DataTypes.DATE,
-      defaultValue: DataTypes.NOW,
-    },
-    updatedAt: {
-      type: DataTypes.DATE,
-      defaultValue: DataTypes.NOW,
-    },
   },
   {
     tableName: "users",
   },
 );
 
-module.exports = User;
+export default User;

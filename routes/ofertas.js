@@ -1,16 +1,16 @@
-// routes/Ofertas.js
-
-const express = require("express");
+// routes/ofertas.js
+import express from "express";
 const router = express.Router();
-const OfertasController = require("../controllers/OfertasController");
-const authMiddleware = require("../middlewares/authMiddleware");
+import OfertasController from "../controllers/OfertasController.js";
+import authMiddleware from "../middlewares/authMiddleware.js";
 
 router.post("/registrar", OfertasController.createWork);
 router.get("/obtener", OfertasController.getAllWorks);
-router.get("/obtener/:categoria", OfertasController.findWorkByCategory);
+// Cambiado de /obtener/:categoria a /categoria/:categoria para evitar conflicto
+router.get("/categoria/:categoria", OfertasController.findWorkByCategory);
 router.get("/agpostulante", OfertasController.addPostulante);
 router.get("/obtener/:id", authMiddleware, OfertasController.getWorkById);
 router.put("/actualizar/:id", authMiddleware, OfertasController.updateWork);
 router.delete("/eliminar/:id", authMiddleware, OfertasController.deleteWork);
 
-module.exports = router;
+export default router;

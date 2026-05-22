@@ -8,27 +8,24 @@ import {
   FaClock,
 } from "react-icons/fa";
 import axios from "axios";
+import { getToken } from "../services/authService";
 
 const JobModal = ({ job, onClose }) => {
   if (!job) return null;
 
-  // ID temporal del postulante (debería venir del usuario logueado)
-  const postulanteId = 1;
-
   const aplicar = async () => {
     try {
+      const token = getToken();
       const response = await axios.post(
         "http://localhost:5000/Trabajos/agpostulante",
-        {
-          trabajoId: job.id,
-          postulanteId: postulanteId,
-        },
+        { trabajoId: job.id },
+        { headers: { Authorization: `Bearer ${token}` } },
       );
 
       alert(response.data.message);
     } catch (error) {
       console.error("Error al postularse:", error);
-      alert("Ocurrió un error al intentar postularse.");
+      alert(error.response?.data?.error || "Ocurrió un error al intentar postularse.");
     }
   };
 
@@ -67,7 +64,11 @@ const JobModal = ({ job, onClose }) => {
 
           <div className="job-requirements">
             <h3>Requisitos</h3>
-            <ul>{job.requerimientos}</ul>
+            <ul>
+              {Array.isArray(job.requerimientos)
+                ? job.requerimientos.map((req, i) => <li key={i}>{req}</li>)
+                : <li>{job.requerimientos}</li>}
+            </ul>
           </div>
         </div>
 

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import {
   FaUser,
   FaEnvelope,
@@ -6,9 +7,11 @@ import {
   FaMapMarkerAlt,
   FaFileUpload,
 } from "react-icons/fa";
+import Navbar from "./Navbar";
 import "../styles/EditProfile.css";
 
 const EditProfile = () => {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     nombre: "",
     email: "",
@@ -47,7 +50,8 @@ const EditProfile = () => {
   };
 
   return (
-    <div className="edit-profile-container">
+    <>
+      <Navbar />
       <div className="edit-profile-wrapper">
         <div className="edit-profile-card">
           <h2>Editar Perfil</h2>
@@ -169,7 +173,7 @@ const EditProfile = () => {
             </div>
 
             <div className="form-actions">
-              <button type="button" className="cancel-btn">
+              <button type="button" className="cancel-btn" onClick={() => navigate(-1)}>
                 Cancelar
               </button>
               <button type="submit" className="save-btn">
@@ -179,7 +183,7 @@ const EditProfile = () => {
           </form>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

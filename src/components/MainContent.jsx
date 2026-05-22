@@ -1,13 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "../styles/MainContent.css";
-import { FaBriefcase } from "react-icons/fa";
+import { FaBriefcase, FaMapMarkerAlt, FaClock } from "react-icons/fa";
 import JobModal from "./JobModal";
 import axios from "axios";
-import { useEffect } from "react";
 
 const MainContent = () => {
   const [jobOffers, setJobOffers] = useState([]);
-  const [selectedJob, setSelectedJob] = useState("");
+  const [selectedJob, setSelectedJob] = useState(null);
 
   useEffect(() => {
     const fetchJobOffers = async () => {
@@ -31,6 +30,11 @@ const MainContent = () => {
   return (
     <div className="main-content">
       <div className="quick-jobs">EMPLEOS RÁPIDOS</div>
+      {jobOffers.length === 0 && (
+        <p style={{ color: "#888", textAlign: "center", padding: "40px 0" }}>
+          No hay ofertas disponibles
+        </p>
+      )}
       {jobOffers.map((job) => (
         <div
           key={job.id}
@@ -38,7 +42,20 @@ const MainContent = () => {
           onClick={() => handleJobClick(job)}
         >
           <FaBriefcase className="job-icon" />
-          <span className="job-title">{job.titulo}</span>
+          <div className="job-info">
+            <span className="job-title">{job.titulo}</span>
+            <div className="job-meta">
+              {job.localizacion && (
+                <span><FaMapMarkerAlt /> {job.localizacion}</span>
+              )}
+              {job.horario && (
+                <span><FaClock /> {job.horario}</span>
+              )}
+            </div>
+          </div>
+          <span className={`job-status ${job.estado ? "active" : ""}`}>
+            {job.estado ? "Activo" : "Inactivo"}
+          </span>
         </div>
       ))}
 

@@ -1,21 +1,87 @@
-import React, { useState } from "react";
+import React from "react";
+import { useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar";
-
-// Estilos básicos simulados (puedes mover esto a un CSS file)
-const styles = {
-  container: { display: "flex", height: "100vh", fontFamily: "Arial" },
-  main: { flex: 1, padding: "20px" },
-};
+import {
+  FaBriefcase,
+  FaUsers,
+  FaEye,
+  FaPlusCircle,
+  FaUser,
+} from "react-icons/fa";
+import "../styles/Dashboard.css";
 
 export default function Dashboard() {
+  const navigate = useNavigate();
+
   return (
-    <>
+    <div className="dashboard-page">
       <Navbar />
-      <div style={styles.container}>
-        <main style={styles.main}>
-          <h1>Bienvenido al Dashboard</h1>
-        </main>
+      <div className="dashboard-content">
+        <h1>Bienvenido al Dashboard</h1>
+        <p className="dashboard-subtitle">
+          Gestiona tus ofertas de empleo y postulaciones
+        </p>
+
+        <div className="dashboard-grid">
+          <div className="dash-card">
+            <div className="dash-card-icon purple">
+              <FaBriefcase />
+            </div>
+            <div className="dash-card-info">
+              <h3>0</h3>
+              <p>Mis Ofertas</p>
+            </div>
+          </div>
+          <div className="dash-card">
+            <div className="dash-card-icon green">
+              <FaUsers />
+            </div>
+            <div className="dash-card-info">
+              <h3>0</h3>
+              <p>Postulantes</p>
+            </div>
+          </div>
+          <div className="dash-card">
+            <div className="dash-card-icon orange">
+              <FaEye />
+            </div>
+            <div className="dash-card-info">
+              <h3>0</h3>
+              <p>Vistas</p>
+            </div>
+          </div>
+          <div className="dash-card">
+            <div className="dash-card-icon blue">
+              <FaUser />
+            </div>
+            <div className="dash-card-info">
+              <h3>1</h3>
+              <p>Mi Perfil</p>
+            </div>
+          </div>
+        </div>
+
+        <div className="dashboard-actions">
+          <button
+            className="dash-action-btn"
+            onClick={() => navigate("/CreateJob")}
+          >
+            <FaPlusCircle /> Publicar Empleo
+          </button>
+          <button
+            className="dash-action-btn outline"
+            onClick={() => navigate("/UserProfile")}
+          >
+            <FaUser /> Ver Perfil
+          </button>
+          <button
+            className="dash-action-btn outline"
+            onClick={() => navigate("/Home")}
+          >
+            <FaEye /> Ver Ofertas
+          </button>
+        </div>
       </div>
-    </>
+    </div>
   );
 }

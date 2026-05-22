@@ -1,18 +1,13 @@
+import axios from "axios";
 import { getToken } from "./authService";
 
+const API_URL = "http://localhost:5000";
+
+const authHeaders = () => ({
+  headers: { Authorization: `Bearer ${getToken()}` },
+});
+
 export const fetchProtectedData = async () => {
-  const token = getToken();
-
-  const response = await fetch("https://localhost:3000/UserList", {
-    method: "GET",
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  });
-
-  if (!response.ok) {
-    throw new Error("Failed to fetch protected data");
-  }
-
-  return response.json();
+  const response = await axios.get(`${API_URL}/Usuarios/obtener`, authHeaders());
+  return response.data;
 };

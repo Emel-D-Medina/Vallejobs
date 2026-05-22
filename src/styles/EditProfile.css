@@ -4,47 +4,46 @@
   align-items: center;
   justify-content: center;
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  padding: 10px;
+  padding: 24px 16px;
   position: relative;
-  overflow: hidden;
 }
 
 .edit-profile-card {
   width: 100%;
-  max-width: 600px;
-  margin: 0 auto;
-  background: rgba(255, 255, 255, 0.95);
+  max-width: 580px;
+  background: rgba(255, 255, 255, 0.96);
   border-radius: 16px;
-  padding: 20px;
-  box-shadow: 0 8px 24px rgba(74, 63, 140, 0.1);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  padding: 32px 28px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.12);
+  position: relative;
+  z-index: 1;
 }
 
 .edit-profile-card h2 {
   color: #2d2b3a;
-  margin-bottom: 30px;
+  margin-bottom: 24px;
   text-align: center;
+  font-size: 24px;
+  font-weight: 700;
 }
 
 .photo-upload-section {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-bottom: 30px;
+  margin-bottom: 24px;
 }
 
 .profile-photo {
-  width: 120px;
-  height: 120px;
+  width: 100px;
+  height: 100px;
   border-radius: 50%;
   overflow: hidden;
   background: #f5f5f5;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 15px;
+  margin-bottom: 12px;
   border: 3px solid #4a3f8c;
 }
 
@@ -55,7 +54,7 @@
 }
 
 .default-avatar {
-  font-size: 48px;
+  font-size: 40px;
   color: #4a3f8c;
 }
 
@@ -67,9 +66,9 @@
 }
 
 .upload-btn {
-  background-color: #4a3f8c;
-  color: white;
-  padding: 12px 24px;
+  background: #4a3f8c;
+  color: #fff;
+  padding: 10px 22px;
   border-radius: 8px;
   border: none;
   cursor: pointer;
@@ -77,20 +76,17 @@
   align-items: center;
   gap: 8px;
   font-size: 14px;
-  font-weight: bold;
-  transition: all 0.3s ease;
-  width: 180px;
-  height: 50px;
-  justify-content: center;
+  font-weight: 600;
+  transition: all 0.2s;
 }
 
 .upload-btn:hover {
-  background-color: #3d3575;
-  transform: translateY(-2px);
+  background: #3d3575;
+  transform: translateY(-1px);
   box-shadow: 0 4px 12px rgba(74, 63, 140, 0.2);
 }
 
-.upload-btn-wrapper input[type=file] {
+.upload-btn-wrapper input[type="file"] {
   position: absolute;
   left: 0;
   top: 0;
@@ -102,14 +98,15 @@
 
 .form-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 30px;
-  margin-bottom: 20px;
-  width: 100%;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 8px;
 }
 
 .form-group {
-  margin-bottom: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
 }
 
 .form-group.full-width {
@@ -119,24 +116,26 @@
 .form-group label {
   display: flex;
   align-items: center;
-  gap: 8px;
-  margin-bottom: 8px;
-  color: #2d2b3a;
-  font-weight: 500;
+  gap: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #555;
 }
 
 .input-icon {
   color: #4a3f8c;
+  font-size: 14px;
 }
 
 .form-group input,
 .form-group textarea {
   width: 100%;
-  padding: 14px;
+  padding: 11px 14px;
   border: 2px solid #e1e1e1;
-  border-radius: 8px;
+  border-radius: 10px;
   font-size: 14px;
-  transition: all 0.3s ease;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  background: #fafafa;
   box-sizing: border-box;
 }
 
@@ -145,75 +144,68 @@
   border-color: #4a3f8c;
   outline: none;
   box-shadow: 0 0 0 3px rgba(74, 63, 140, 0.1);
+  background: #fff;
 }
 
 .cv-upload-section {
-  margin-bottom: 30px;
-  width: 100%;
+  margin: 16px 0;
   display: flex;
   flex-direction: column;
   align-items: center;
-}
-
-.cv-upload-wrapper {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 10px;
+  gap: 8px;
 }
 
 .file-name {
-  font-size: 14px;
-  color: #666;
-  margin-top: 5px;
-  text-align: center;
+  font-size: 13px;
+  color: #888;
 }
 
 .form-actions {
   display: flex;
   justify-content: center;
-  gap: 15px;
-  margin-top: 30px;
+  gap: 12px;
+  margin-top: 24px;
 }
 
 .cancel-btn,
 .save-btn {
-  padding: 12px 24px;
-  border-radius: 8px;
-  font-size: 16px;
+  padding: 12px 28px;
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: 600;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.2s;
 }
 
 .cancel-btn {
-  background-color: transparent;
-  border: 2px solid #4a3f8c;
-  color: #4a3f8c;
-}
-
-.save-btn {
-  background-color: #4a3f8c;
-  border: none;
-  color: white;
+  background: transparent;
+  border: 2px solid #ddd;
+  color: #666;
 }
 
 .cancel-btn:hover {
-  background-color: #f5f5f5;
+  background: #f5f5f5;
+}
+
+.save-btn {
+  background: #4a3f8c;
+  border: none;
+  color: #fff;
 }
 
 .save-btn:hover {
-  background-color: #3d3575;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(74, 63, 140, 0.2);
+  background: #3d3575;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(74, 63, 140, 0.25);
 }
 
-@media (max-width: 768px) {
+@media (max-width: 600px) {
   .form-grid {
     grid-template-columns: 1fr;
   }
 
   .edit-profile-card {
-    padding: 20px;
+    padding: 24px 18px;
   }
 
   .form-actions {
@@ -223,5 +215,6 @@
   .cancel-btn,
   .save-btn {
     width: 100%;
+    text-align: center;
   }
 }

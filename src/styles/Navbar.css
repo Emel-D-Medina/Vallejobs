@@ -1,167 +1,181 @@
-/* src/styles/Navbar.css */
 .navbar {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background-color: #f5f8fc;
-  padding: 8px 20px;
+  background: #fff;
+  padding: 0 24px;
+  height: 64px;
   color: #333;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  position: sticky;
+  top: 0;
+  z-index: 100;
 }
-
-
-.menu-btn {
-  background-color: #4a3f8c;
-  color: white;
-  border: 1px solid #4a3f8c;
-  border-radius: 4px;
-  padding: 6px 12px;
-  font-size: 13px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  margin-left: 5px;
-  min-width: 80px;
-}
-
 
 .logo {
-  font-weight: bold;
-  font-size: 24px;
-  color: #1a2a5a;
-  margin-right: 20px;
+  font-weight: 800;
+  font-size: 22px;
+  color: #4a3f8c;
+  cursor: pointer;
+  letter-spacing: 1px;
+  user-select: none;
+  flex-shrink: 0;
 }
-
 
 .search-bar {
   display: flex;
-  flex-grow: 1;
-  max-width: 800px;
-  margin: 30px;
-  align-items: center;
+  flex: 1;
+  max-width: 520px;
+  margin: 0 24px;
 }
 
 .search-bar input {
-  padding: 10px 20px;
-  border: 2px solid #ddd;
+  flex: 1;
+  padding: 10px 16px;
+  border: 2px solid #e8e8e8;
   border-radius: 8px 0 0 8px;
-  width: 100%;
-  font-size: 16px;
-  transition: all 0.3s ease;
+  font-size: 14px;
+  outline: none;
+  transition: border-color 0.2s;
 }
 
 .search-bar input:focus {
-
   border-color: #4a3f8c;
-  box-shadow: 0 0 5px rgba(74, 63, 140, 0.2);
-  padding: 10px 30px;
-  border-radius: 0 8px 8px 0;
-  border: none;
 }
 
 .search-btn {
-  background-color: #4a3f8c;
+  background: #4a3f8c;
   border: none;
-  padding: 10px 30px;
-  color: white;
+  padding: 0 20px;
+  color: #fff;
   cursor: pointer;
   border-radius: 0 8px 8px 0;
-  font-size: 16px;
-  transition: all 0.3s ease;
-  margin-left: 5px;
-  margin-top: 5px;
-  position: relative;
-  top: 10px;
-  left: 0;
+  font-size: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s;
 }
 
 .search-btn:hover {
-  background-color: #3d3575;
-}
-
-.register-btn,
-.login-btn {
-  background-color: #4a3f8c;
-  color: white;
-  border: 1px solid #4a3f8c;
-  border-radius: 4px;
-  padding: 6px 12px;
-  font-size: 13px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  margin-top: 10px;
-  position: relative;
-  top: 10px;
-}
-
-.login-btn {
-  background-color: transparent;
-  color: #402ea7;
-  text-decoration: none;
-  margin-top: 5px;
-}
-
-.register-btn:hover,
-.login-btn:hover,
-menu-btn:hover {
-  background-color: #3d3575;
-  color: white;
+  background: #3d3575;
 }
 
 .nav-buttons {
   display: flex;
-  align-items: flex-start;
-  justify-content: flex-start;
-  gap: 10px;
-  margin-left: 15px;
-}
-
-/* Asegurando que todos los botones tengan el mismo tamaño y estilo */
-.menu-btn,
-.search-btn,
-.register-btn,
-.login-btn {
-  min-width: 100px;
-  /* Asegura que todos los botones tengan un ancho mínimo igual */
-  height: 40px;
-  /* Establece una altura uniforme para todos los botones */
-  display: flex;
-  /* Asegura que el contenido del botón esté centrado */
   align-items: center;
-  /* Centra verticalmente el contenido */
-  justify-content: center;
-  /* Centra horizontalmente el contenido */
-  padding: 0;
-  /* Asegura que no haya padding adicional */
-  border: 1px solid #4a3f8c;
-  /* Asegura que todos los botones tengan un borde consistente */
-  border-radius: 4px;
-  /* Bordes redondeados */
-  background-color: #4a3f8c;
-  /* Color de fondo para todos los botones */
-  color: white;
-  /* Color del texto */
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.nav-btn,
+.register-btn {
+  padding: 8px 18px;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 600;
   cursor: pointer;
-  /* Cambia el cursor al pasar sobre el botón */
-  transition: background-color 0.3s ease;
-  /* Transición suave para el color de fondo */
-  margin-top: -10px;
-  /* Ajusta la posición vertical */
+  transition: all 0.2s;
+  border: 1px solid #4a3f8c;
+  background: transparent;
+  color: #4a3f8c;
+  white-space: nowrap;
+}
+
+.nav-btn:hover,
+.register-btn:hover {
+  background: #4a3f8c;
+  color: #fff;
 }
 
 .login-btn {
-  background-color: transparent;
-  /* Fondo transparente para el botón de iniciar sesión */
-  color: #402ea7;
-  /* Color del texto para el botón de iniciar sesión */
-  border: px solid #402ea7;
-  /* Borde para el botón de iniciar sesión */
+  padding: 8px 18px;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  border: 1px solid #4a3f8c;
+  background: #4a3f8c;
+  color: #fff;
+  white-space: nowrap;
 }
 
-.register-btn:hover,
-.login-btn:hover,
-.menu-btn:hover {
-  background-color: #3d3575;
-  /* Color de fondo al pasar el mouse */
-  color: white;
-  /* Color del texto al pasar el mouse */
+.login-btn:hover {
+  background: #3d3575;
+}
+
+.logout-btn {
+  padding: 8px 18px;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  border: 1px solid #dc3545;
+  background: #dc3545;
+  color: #fff;
+  white-space: nowrap;
+}
+
+.logout-btn:hover {
+  background: #c82333;
+}
+
+.hamburger {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 24px;
+  color: #4a3f8c;
+  cursor: pointer;
+  padding: 4px;
+}
+
+.mobile-menu {
+  display: none;
+}
+
+@media (max-width: 900px) {
+  .search-bar {
+    display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .navbar {
+    padding: 0 16px;
+    height: 56px;
+  }
+
+  .nav-buttons {
+    display: none;
+  }
+
+  .hamburger {
+    display: block;
+  }
+
+  .mobile-menu {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 56px;
+    left: 0;
+    right: 0;
+    background: #fff;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    padding: 12px 16px;
+    gap: 8px;
+    z-index: 99;
+  }
+
+  .mobile-menu .nav-btn,
+  .mobile-menu .register-btn,
+  .mobile-menu .login-btn,
+  .mobile-menu .logout-btn {
+    width: 100%;
+    text-align: center;
+    padding: 12px;
+  }
 }

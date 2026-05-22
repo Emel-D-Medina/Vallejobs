@@ -27,6 +27,7 @@ const Sidebar = () => {
 
   return (
     <div className="sidebar">
+      <div className="sidebar-title">Categorías</div>
       {jobCategory.map((category) => (
         <button
           key={category.id}

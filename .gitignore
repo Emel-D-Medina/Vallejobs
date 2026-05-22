@@ -145,3 +145,10 @@ dist
 pnpm-lock.yaml
 
 # End of https://www.toptal.com/developers/gitignore/api/node
+
+# Playwright
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/
+/playwright/.auth/

@@ -1,5 +1,7 @@
 import express, { json } from "express";
 import cors from "cors";
+import { fileURLToPath } from "url";
+import path from "path";
 import { testConnection, syncModels } from "./database.js";
 import "./models/associations.js";
 import usersRoutes from "./routes/users.js";
@@ -22,18 +24,21 @@ app.use("/Categoria", categoriaRoutes);
 
 const startServer = async () => {
   const connected = await testConnection();
-  if (!connected) {
+
+  if (connected) {
+    await syncModels();
+  } else {
     console.warn("El servidor se iniciará sin conexión a la base de datos.");
   }
-
-  await syncModels();
 
   app.listen(PORT, () => {
     console.log(`Servidor corriendo en http://localhost:${PORT}`);
   });
 };
 
-const isMain = process.argv[1] && import.meta.url.endsWith(process.argv[1].replace(/\\/g, "/"));
+const isMain =
+  process.argv[1] &&
+  path.resolve(fileURLToPath(import.meta.url)) === path.resolve(process.argv[1]);
 if (isMain) {
   startServer();
 }

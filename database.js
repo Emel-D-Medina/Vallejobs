@@ -10,12 +10,12 @@ export const sequelize = new Sequelize(
     port: parseInt(process.env.DB_PORT) || 3306,
     dialect: "mariadb",
     dialectOptions: {
-      connectTimeout: 30000,
+      connectTimeout: parseInt(process.env.DB_CONNECT_TIMEOUT) || 30000,
     },
     pool: {
       max: 10,
       min: 0,
-      acquire: 30000,
+      acquire: parseInt(process.env.DB_ACQUIRE_TIMEOUT) || 30000,
       idle: 10000,
     },
     logging: false,

@@ -1,6 +1,5 @@
-// models/OfertasTrabajo.js
 import { DataTypes } from "sequelize";
-import { sequelize } from "../database.js"; // Asegúrate de incluir .js
+import { sequelize } from "../database.js";
 
 const OfertasTrabajo = sequelize.define(
   "OfertasTrabajo",
@@ -29,26 +28,26 @@ const OfertasTrabajo = sequelize.define(
     salario: {
       type: DataTypes.INTEGER,
       allowNull: true,
-      validate: {
-        isInt: true,
-      },
     },
     postulantes: {
       type: DataTypes.JSON,
       allowNull: true,
+      defaultValue: [],
       get() {
-        return this.getDataValue("postulantes")
-          ? JSON.parse(this.getDataValue("postulantes"))
-          : [];
+        const raw = this.getDataValue("postulantes");
+        if (!raw) return [];
+        if (Array.isArray(raw)) return raw;
+        try { return JSON.parse(raw); } catch { return []; }
       },
       set(value) {
-        this.setDataValue("postulantes", JSON.stringify(value));
+        const arr = Array.isArray(value) ? value : (value ? [value] : []);
+        this.setDataValue("postulantes", JSON.stringify(arr));
       },
     },
-
     estado: {
       type: DataTypes.BOOLEAN,
       allowNull: false,
+      defaultValue: true,
     },
     descripcion: {
       type: DataTypes.TEXT,
@@ -57,22 +56,25 @@ const OfertasTrabajo = sequelize.define(
     requerimientos: {
       type: DataTypes.JSON,
       allowNull: true,
+      defaultValue: [],
       get() {
-        return this.getDataValue("requerimientos")
-          ? JSON.parse(this.getDataValue("requerimientos"))
-          : [];
+        const raw = this.getDataValue("requerimientos");
+        if (!raw) return [];
+        if (Array.isArray(raw)) return raw;
+        try { return JSON.parse(raw); } catch { return [raw]; }
       },
       set(value) {
-        this.setDataValue("requerimientos", JSON.stringify(value));
+        if (typeof value === "string") {
+          try { JSON.parse(value); this.setDataValue("requerimientos", value); return; } catch {}
+          this.setDataValue("requerimientos", JSON.stringify([value]));
+        } else {
+          this.setDataValue("requerimientos", JSON.stringify(value));
+        }
       },
     },
-    createdAt: {
-      type: DataTypes.DATE,
-      defaultValue: DataTypes.NOW,
-    },
-    updatedAt: {
-      type: DataTypes.DATE,
-      defaultValue: DataTypes.NOW,
+    userId: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
     },
   },
   {

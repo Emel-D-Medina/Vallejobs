@@ -1,11 +1,10 @@
-// routes/users.js
 import express from "express";
 import userController from "../controllers/userController.js";
 import jwt from "jsonwebtoken";
-import bcrypt from "bcryptjs";
 import authMiddleware from "../middlewares/authMiddleware.js";
 
 const router = express.Router();
+
 router.post("/registrar", userController.createUser);
 router.get("/obtener", authMiddleware, userController.getAllUsers);
 router.get("/obtener/:id", authMiddleware, userController.getUserById);
@@ -15,24 +14,32 @@ router.delete("/eliminar/:id", authMiddleware, userController.deleteUser);
 router.post("/login", async (req, res) => {
   try {
     const { email, password } = req.body;
+
+    if (!email || !password) {
+      return res.status(400).json({ message: "Email y contraseña son obligatorios" });
+    }
+
     const user = await userController.findUserByEmail(email);
-
     if (!user) {
-      return res.status(401).json({ message: "Usuario no encontrado" });
+      return res.status(401).json({ message: "Credenciales inválidas" });
     }
 
-    const isPasswordValid = await bcrypt.compare(password, user.password);
+    const isPasswordValid = user.comparePassword(password);
     if (!isPasswordValid) {
-      return res.status(401).json({ message: "Contraseña incorrecta" });
+      return res.status(401).json({ message: "Credenciales inválidas" });
     }
 
-    const token = jwt.sign({ userId: user.id }, process.env.JWT_SECRET, {
-      expiresIn: "1h",
-    });
+    const token = jwt.sign(
+      { userId: user.id, email: user.email },
+      process.env.JWT_SECRET,
+      { expiresIn: "24h" },
+    );
 
-    res.json({ token, user });
+    const { password: _, ...userWithoutPassword } = user.toJSON();
+    res.json({ token, user: userWithoutPassword });
   } catch (error) {
-    res.status(500).json({ message: "Error en el servidor", error });
+    console.error("Error en login:", error);
+    res.status(500).json({ message: "Error en el servidor" });
   }
 });
 

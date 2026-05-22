@@ -8,7 +8,7 @@ router.post("/registrar", OfertasController.createWork);
 router.get("/obtener", OfertasController.getAllWorks);
 // Cambiado de /obtener/:categoria a /categoria/:categoria para evitar conflicto
 router.get("/categoria/:categoria", OfertasController.findWorkByCategory);
-router.get("/agpostulante", OfertasController.addPostulante);
+router.post("/agpostulante", authMiddleware, OfertasController.addPostulante);
 router.get("/obtener/:id", authMiddleware, OfertasController.getWorkById);
 router.put("/actualizar/:id", authMiddleware, OfertasController.updateWork);
 router.delete("/eliminar/:id", authMiddleware, OfertasController.deleteWork);

@@ -1,8 +1,8 @@
-const { sequelize, testConnection } = require("../database");
+import { jest, describe, it, expect, afterEach } from "@jest/globals";
+import { sequelize, testConnection } from "../database.js";
 
-// Mockeamos los console para no ensuciar la terminal del test
-console.log = jest.fn();
-console.error = jest.fn();
+jest.spyOn(console, "log").mockImplementation(() => {});
+jest.spyOn(console, "error").mockImplementation(() => {});
 
 describe("Configuración de Base de Datos", () => {
   afterEach(() => {
@@ -14,26 +14,20 @@ describe("Configuración de Base de Datos", () => {
   });
 
   it("testConnection debería loguear éxito cuando authenticate funciona", async () => {
-    // Simulamos que la autenticación es exitosa
     jest.spyOn(sequelize, "authenticate").mockResolvedValue();
-
     await testConnection();
-
     expect(console.log).toHaveBeenCalledWith(
       expect.stringContaining("Conexión a la base de datos establecida"),
     );
   });
 
   it("testConnection debería loguear error cuando authenticate falla", async () => {
-    // Simulamos un fallo de conexión
     const errorSimulado = new Error("Error de conexión");
     jest.spyOn(sequelize, "authenticate").mockRejectedValue(errorSimulado);
-
     await testConnection();
-
     expect(console.error).toHaveBeenCalledWith(
       expect.stringContaining("No se pudo conectar"),
-      errorSimulado,
+      errorSimulado.message,
     );
   });
 });
